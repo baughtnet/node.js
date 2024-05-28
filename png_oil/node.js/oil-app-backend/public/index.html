@@ -18,7 +18,7 @@
         $(document).ready(function() {
             $('#uploadForm').on('submit', function(event) {
                 event.preventDefault();
-                const formData = new FromData(this);
+                const formData = new FormData(this);
 
                 $.ajax({
                     url: '/upload',
@@ -27,7 +27,7 @@
                     processData: false,
                     contentType: false,
                     success: function(response) {
-                        $('#response').html('<h3>' + response.message + '</h3><a href="' + response.videoPath + '">Download Video</a>);
+                        $('#response').html('<h3>' + response.message + '</h3><a href="' + response.videoPath + '">Download Video</a>');
                     },
                     error: function(jqXHR, textStatus, errorThrown) {
                         console.error('Error:', textStatus, errorThrown);

@@ -11,7 +11,7 @@ const upload = multer({ dest: "uploads/" });
 
 app.use(express.static("public"));
 
-app. post('/upload', upload.array('images'), (req, res) => {
+app.post('/upload', upload.array('images'), (req, res) => {
     const files = req.files;
 
     if (!files || files.length === 0) {
