@@ -1,6 +1,7 @@
 const express = require("express");
 const multer = require("multer");
 const ffmpeg = require("fluent-ffmpeg");
+const cors = require("cors");
 const fs = require("fs");
 const path = require("path");
 
@@ -9,7 +10,10 @@ const PORT = 3086;
 
 const upload = multer({ dest: "uploads/" });
 
+app.use(cors());
+
 app.use(express.static("public"));
+app.use('/output', express.static(path.join(__dirname, 'output')));
 
 app.post('/upload', upload.array('images'), (req, res) => {
     const files = req.files;
@@ -22,7 +26,7 @@ app.post('/upload', upload.array('images'), (req, res) => {
     const frameRate = 30;
 
     const images = files.map(file => path.join(file.destination, file.filename));
-    images.sort
+    images.sort()
 
     ffmpeg()
         .input(images[0])
