@@ -3,38 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image to Video</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>Image to Video Converter</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Upload Images to Create Video</h1>
-    <form id="uploadForm" enctype="multipart/form-data">
-        <input type="file" name="images" id="images" multiple accept="image/*">
-        <button type="submit">Upload</button>
-    </form>
-    <div id="response"></div>
-
-    <script>
-        $(document).ready(function() {
-            $('#uploadForm').on('submit', function(event) {
-                event.preventDefault();
-                const formData = new FormData(this);
-
-                $.ajax({
-                    url: 'http://localhost:3086/upload',
-                    method: 'POST',
-                    data: formData,
-                    processData: false,
-                    contentType: false,
-                    success: function(response) {
-                        $('#response').html('<h3>' + response.message + '</h3><a href="' + response.videoPath + '">Download Video</a>');
-                    },
-                    error: function(jqXHR, textStatus, errorThrown) {
-                        console.error('Error:', textStatus, errorThrown);
-                    }
-                });
-            });
-        });
-    </script>
+    <h1>Image to Video Converter</h1>
+    <input type="file" id="fileInput">
+    <button onclick="convertToVideo()">Convert</button>
+    <script src="script.js"></script>
 </body>
 </html>
